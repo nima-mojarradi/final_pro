@@ -1,23 +1,11 @@
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
 from .serializers import UserSerializer
-from rest_framework.authtoken.models import Token
-from django.contrib.auth import authenticate
-from django.core.exceptions import ObjectDoesNotExist
-from .models import CustomUser
-from rest_framework.authtoken.models import Token
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAuthenticated
-from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse, JsonResponse
+from django.contrib.auth import authenticate, login
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
-from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from .serializers import UserSerializer
 
 
 class RegisterUserView(APIView):
