@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'rest_framework',
+    'rss_parser'
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,8 @@ AUTH_USER_MODEL = 'user.CustomUser'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+        #for applying the jwt authentication we have to add 'rest_framework_simplejwt.authentication.JWTAuthentication' to the default authentication to authenticate the 
+        # user using jwt authentication
     ],
 }
 
