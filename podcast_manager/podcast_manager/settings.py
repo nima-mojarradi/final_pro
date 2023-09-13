@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'rest_framework',
+    'rss_parser'
 ]
 
 MIDDLEWARE = [
@@ -78,10 +79,19 @@ WSGI_APPLICATION = 'podcast_manager.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': 
+    {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
    }
+#    {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'podcast_manager',
+#         'USER': 'postgres',
+#         'PASSWORD': '3858nima',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432'
+#     }
 }
 
 
@@ -131,6 +141,8 @@ AUTH_USER_MODEL = 'user.CustomUser'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+        #for applying the jwt authentication we have to add 'rest_framework_simplejwt.authentication.JWTAuthentication' to the default authentication to authenticate the 
+        # user using jwt authentication
     ],
 }
 
