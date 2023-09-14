@@ -13,9 +13,9 @@ class ModelParserView(APIView):
         serializer = ModelParserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            a = parse_rss_feed(request.data['link'])
-            for item in a :
-                item
+            items = parse_rss_feed(serializer.validated_data['link'])
+            for item in items :
+                item.save()
             articles = ModelParser.objects.all()
             serializer = ModelParserSerializer(articles, many=True)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
