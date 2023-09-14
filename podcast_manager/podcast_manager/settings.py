@@ -80,18 +80,18 @@ WSGI_APPLICATION = 'podcast_manager.wsgi.application'
 
 DATABASES = {
     'default': 
-    {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-   }
-#    {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'podcast_manager',
-#         'USER': 'postgres',
-#         'PASSWORD': '3858nima',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432'
-#     }
+#     {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+   {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'podcast_manager',
+        'USER': 'postgres',
+        'PASSWORD': '3858nima',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
+    }
 }
 
 
