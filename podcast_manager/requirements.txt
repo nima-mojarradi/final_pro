@@ -1,0 +1,4 @@
+django==4.2.5
+djangorestframework==3.14.0
+lxml==4.9.3
+requests==2.31.0
