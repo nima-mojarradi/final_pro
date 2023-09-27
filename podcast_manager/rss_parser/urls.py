@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import ModelParserView
+from .views import ParsRssFeed
 
 urlpatterns = [
-    path('parser/', ModelParserView.as_view(), name='parser'),
+    path('parser/', ParsRssFeed.as_view(), name='parser'),
 ]
