@@ -13,7 +13,7 @@ class ModelParser(models.Model):
 
 
 class Like(models.Model):
-    user = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
+    user = models.OneToOneField(CustomUser,on_delete=models.CASCADE,related_name='user')
     podcast = models.OneToOneField(ModelParser, on_delete=models.CASCADE)
 
 class Comment(models.Model):
