@@ -15,10 +15,11 @@ class RegisterUserView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         serializer.is_valid()
+        serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
-@csrf_protect
 class LoginUserView(CreateAPIView):
+    serializer_class = UserSerializer
     def post(self,request):
         user = CustomUser.objects.filter(username=request.data['username']).first()
         if not user:
