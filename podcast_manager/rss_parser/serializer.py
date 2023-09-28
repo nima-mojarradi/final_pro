@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ModelParser
+from .models import ModelParser, Like
 
 class ModelParserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,3 +9,9 @@ class ModelParserSerializer(serializers.ModelSerializer):
             'description':{'read_only':True},
             'title':{'read_only':True}
         }
+
+
+class LikedPodcastsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Like
+        fields = ('id', 'user', 'podcast')
