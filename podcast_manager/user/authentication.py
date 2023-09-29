@@ -13,11 +13,11 @@ def create_access_token(id):
 
 def decode_access_token(token):
     try:
-        payload = jwt.decode(token, 'access_token', algorithms='HS256')
-        return payload('user_id')
+        payload = jwt.decode(token, 'access_secret', algorithms='HS256')
+        return payload['user_id']
     
     except:
-        raise exceptions.AuthenticationFailed('unauthenticated')
+        print('2'*100)
 
 
 def create_refresh_token(id):
@@ -30,9 +30,9 @@ def create_refresh_token(id):
 
 def decode_refresh_token(token):
     try:
-        payload = jwt.decode(token, 'refresh_token', algorithms='HS256')
+        payload = jwt.decode(token, 'refresh_secret', algorithms='HS256')
 
-        return payload('user_id')
+        return payload['user_id']
     
     except:
-        raise exceptions.AuthenticationFailed('unauthenticated')
+        print('1'*100)

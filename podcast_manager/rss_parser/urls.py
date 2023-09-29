@@ -1,8 +1,8 @@
 from django.urls import path
-from .parser import ParsRssFeed
+from .parser import ParseRssFeed
 from .views import LikedPodcasts
 
 urlpatterns = [
-    path('parser/', ParsRssFeed.as_view(), name='parser'),
+    path('parser/', ParseRssFeed, name='parser'),
     path('likes/', LikedPodcasts.as_view(), name='likes'),
 ]

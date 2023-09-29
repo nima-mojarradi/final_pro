@@ -13,11 +13,11 @@ class ModelParser(models.Model):
 
 
 class Like(models.Model):
-    user = models.OneToOneField(CustomUser,on_delete=models.CASCADE,related_name='user')
-    podcast = models.OneToOneField(ModelParser, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='user')
+    title = models.ForeignKey(ModelParser, on_delete=models.CASCADE)
 
 class Comment(models.Model):
-    user = models.OneToOneField(CustomUser,on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     context = models.TextField()
-    podcast = models.OneToOneField(ModelParser, on_delete=models.CASCADE)
+    podcast = models.ForeignKey(ModelParser, on_delete=models.CASCADE)
     

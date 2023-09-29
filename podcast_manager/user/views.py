@@ -47,6 +47,6 @@ class UserAPIView(APIView):
 
             return Response(UserSerializer(user).data)
         else:
-            raise AuthenticationFailed('unauthenticated')
+            print(user)
 
 

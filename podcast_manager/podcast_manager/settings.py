@@ -15,6 +15,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from dotenv import load_dotenv
 import os
+from django.core.management.commands.runserver import Command as rs
 
 load_dotenv()
 
@@ -32,6 +33,8 @@ SECRET_KEY = 'django-insecure-1+i812=%8zfuhoav#w=f@noi^rkxi4ddv12!3e^)hjuef%qzrw
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+rs.default_port='5000'
 
 
 # Application definition
