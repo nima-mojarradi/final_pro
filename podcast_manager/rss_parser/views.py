@@ -2,8 +2,9 @@ import requests
 import xml.etree.ElementTree as ET
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import ModelParser
-
+from .models import ModelParser, Like
+from rest_framework import status
+from .serializer import LikeSerializer
 
 class ParsRssFeed(APIView):
     def get(self, request):
@@ -37,3 +38,15 @@ class ParsRssFeed(APIView):
             'itunes_image': itunes_images.text if itunes_images is not None else None,
         })
         return Response(items)
+
+
+class LikeView(APIView):
+    def post(self, request, pk):
+        try:
+            like = Like.objects.get(post=pk)
+            like.likes += 1
+            like.save()
+            serializer = LikeSerializer(like)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Like.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
