@@ -11,6 +11,7 @@ from rest_framework.authentication import get_authorization_header
 from rest_framework.response import Response
 from .serializers import UserSerializer
 from rest_framework import status
+from uuid import uuid4
 class RegisterUserView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
@@ -26,9 +27,11 @@ class LoginUserView(CreateAPIView):
             raise APIException('invalid credential')
         
         if not user.check_password(request.data['password']):
-            raise APIException('invalid credential!')        
-        access_token = create_access_token(user.id)
-        refresh_token = create_refresh_token(user.id)
+            raise APIException('invalid credential!')  
+
+        jti = uuid4().hex      
+        access_token = create_access_token(user.id, jti)
+        refresh_token = create_refresh_token(user.id, jti)
         response = Response()
         response.set_cookie(key='refresh_token',value=refresh_token, httponly=True)
         response.data = {
