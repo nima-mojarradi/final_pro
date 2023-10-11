@@ -12,13 +12,16 @@ from rest_framework.response import Response
 from .serializers import UserSerializer
 from rest_framework import status
 from uuid import uuid4
+from django.core.cache import cache
 class RegisterUserView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
-        serializer.is_valid()
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+           return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
 class LoginUserView(CreateAPIView):
     serializer_class = UserSerializer
     def post(self,request):
@@ -32,6 +35,7 @@ class LoginUserView(CreateAPIView):
         jti = uuid4().hex      
         access_token = create_access_token(user.id, jti)
         refresh_token = create_refresh_token(user.id, jti)
+        cache.set(jti)
         response = Response()
         response.set_cookie(key='refresh_token',value=refresh_token, httponly=True)
         response.data = {
