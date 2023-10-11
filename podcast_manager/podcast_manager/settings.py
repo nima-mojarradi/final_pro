@@ -155,3 +155,11 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = "user.CustomUser"
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://localhost:6379/1",
+    }
+}
